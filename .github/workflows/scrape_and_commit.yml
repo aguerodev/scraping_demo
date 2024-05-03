@@ -24,8 +24,8 @@ jobs:
       with:
         r-version: '4.1.2'  # Asegúrate de usar la versión de R que necesitas
      
-     - name: Install system dependencies
-       run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
+    - name: Install system dependencies
+      run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
       
     - name: Restore R environment using renv
       uses: r-lib/actions/setup-renv@v2
