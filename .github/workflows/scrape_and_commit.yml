@@ -1,9 +1,13 @@
 name: Scrape and Commit Data
 
 on:
+  push:
+    branches:
+      - '*'
+    tags:
+      - '*'
   schedule:
-    - cron: '0 */1 * * *'  # Ejecuta el workflow cada 6 horas
-
+    - cron: '0 */6 * * *'
 jobs:
   scrape_and_commit:
     runs-on: ubuntu-latest
