@@ -20,11 +20,25 @@ fix_price_masxmenos <- function(price){
   return(out)
 }
 
+fix_price_automercado <- function(price) {
+  out <- gsub("[₡,]", "", price)
+  out <- as.numeric(out)
+  return(out)
+}
+
+fix_price_maxipali <- function(price){
+  out <- gsub("[\\₡.]", "", price)
+  out <- as.numeric(out)
+  return(out)
+}
+
 
 ## Lista de funciones
 
 functions <- list(
-  "MasxMenos" = fix_price_masxmenos
+  "MasxMenos" = fix_price_masxmenos,
+  "Automercado" = fix_price_automercado,
+  "Maxipali" = fix_price_maxipali
 )
 
 # Función auxiliar para cargar el módulo y exponerlo
