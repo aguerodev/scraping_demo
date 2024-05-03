@@ -2,8 +2,7 @@
 #' @export
 extract_prices <- function(supermercado) {
   box::use(
-    purrr[map],
-    tibble[tibble]
+    purrr[map]
   )
   urls <- map(supermercado$productos, ~ .x$url_producto) 
   nombres <- map(supermercado$productos, ~ .x$nombre)
@@ -11,7 +10,7 @@ extract_prices <- function(supermercado) {
   
   precios <- map(urls, ~ extract_price(supermercado$url_base, .x, supermercado$xpath_precio))
   
-  tibble(
+  data.frame(
     supermercado = supermercado$nombre,
     nombre = unlist(nombres),
     url_producto = unlist(urls),

@@ -1,6 +1,5 @@
 library(config)
 library(purrr)
-library(dplyr)
 library(DBI)
 library(duckdb)
 
@@ -14,10 +13,9 @@ supermercados <- get(file = "config.yml")
 
 ## Extraer los precios para cada producto
 df <- map(supermercados, extract_prices) |> 
-  list_rbind() |> 
-  mutate(
-    precio = fix_price(precio, supermercado)
-  )
+  list_rbind() 
+
+df$precio <- fix_price(df$precio, df$supermercado)
 
 ## Escribir en la db
 dbWriteTable(con, "productos", df, append = TRUE)

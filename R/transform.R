@@ -15,11 +15,8 @@ fix_price <- function(price, name){
 ## MasxMenos
 
 fix_price_masxmenos <- function(price){
-  box::use(
-    readr[parse_number, locale]
-  )
-  
-  parse_number(price, locale = locale(grouping_mark = "."))
+  out <- gsub("[\\$.]", "", price)
+  return(out)
 }
 
 
@@ -28,3 +25,11 @@ fix_price_masxmenos <- function(price){
 functions <- list(
   "MasxMenos" = fix_price_masxmenos
 )
+
+# Función auxiliar para cargar el módulo y exponerlo
+.on_load = function (ns) {
+  message(
+    'Cargando el modulo "', box::name(), '"\n',
+    'Ruta del modulo: "', basename(box::file()), '"'
+  )
+}
