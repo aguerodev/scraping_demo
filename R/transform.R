@@ -15,7 +15,8 @@ fix_price <- function(price, name){
 ## MasxMenos
 
 fix_price_masxmenos <- function(price){
-  out <- gsub("[\\$.]", "", price)
+  out <- gsub("[\\₡.]", "", price)
+  out <- as.numeric(out)
   return(out)
 }
 
